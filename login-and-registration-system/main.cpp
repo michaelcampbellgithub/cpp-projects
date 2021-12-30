@@ -1,13 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdio>
 
 using namespace std;
 
-bool IsLoggedIn() {
-    string username, password, un, pw;
+bool IsLoggedIn(string username) {
+    string password, un, pw;
 
-    cout << "Enter username: "; cin >> username;
     cout << "Enter password: "; cin >> password;
 
     ifstream read("data/" + username + ".txt");
@@ -25,7 +25,7 @@ bool IsLoggedIn() {
 int main() {
     int choice;
 
-    cout << "1: Register\n2: Login\nYour choice: "; cin >> choice;
+    cout << "1: Register\n2: Login\n3: Change Password\n4: Delete user\nYour choice: "; cin >> choice;
 
     if (choice == 1) {
         string username, password;
@@ -41,15 +41,45 @@ int main() {
         main();
     }
 
-    if (choice == 2) {
-        bool status = IsLoggedIn();
+    string username;
+    cout << "Enter username: "; cin >> username;
 
-        if (!status) {
-            cout << "Invalid login" << endl;
-            return 0;
-        }
+    bool status = IsLoggedIn(username);
 
-        cout << "Successfully logged in" << endl;
-        return 1;
+    if (!status) {
+        cout << "Invalid login" << endl;
+        return 0;
     }
+
+    cout << "Successfully logged in" << endl;
+
+    if (choice == 2) {
+        main();
+    }
+
+    if (choice == 3) {
+        string newPassword;
+        cout << "Enter new password: "; cin >> newPassword;
+
+        // actually quicker to just make a new file
+        // will have to move username collection to main
+        remove(("data/" + username + ".txt").c_str());
+
+        ofstream file;
+        file.open("data/" + username + ".txt");
+        file << username << endl << newPassword;
+        file.close();
+
+        cout << "Password updated successfully" << endl;
+
+        main();
+    }
+
+    if (choice == 4) {
+        remove(("data/" + username + ".txt").c_str());
+        cout << "User deleted successfully" << endl;
+
+        main();
+    }
+
 }

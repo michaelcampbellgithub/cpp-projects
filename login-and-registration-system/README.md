@@ -10,8 +10,8 @@ g++ ./main.cpp -o main && ./main
 ```
 
 ## My changes (proposed):
-* Delete user
-* Change pwd
+* Exit program option
+* Hash pwd in file
 * Write functional tests
 * Is an e2e test possible?
 * Profiling/optimisation
@@ -19,3 +19,5 @@ g++ ./main.cpp -o main && ./main
 
 ## My changes (implemented):
 * Removed call to `system("PAUSE")` as `PAUSE` is a Windows command & want this to be OS-agnostic
+* Delete user option
+* Change pwd option
