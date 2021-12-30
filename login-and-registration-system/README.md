@@ -2,7 +2,7 @@
 
 Followed [this tutorial](https://www.youtube.com/watch?v=I_aWPGCaaFA) & adding some adaptations
 
-## Setup
+## Setup
 
 To run this locally, compile the binary & execute it. e.g (using gcc compiler):
 ```bash
