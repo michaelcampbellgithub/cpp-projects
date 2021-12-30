@@ -25,7 +25,12 @@ bool IsLoggedIn(string username) {
 int main() {
     int choice;
 
-    cout << "1: Register\n2: Login\n3: Change Password\n4: Delete user\nYour choice: "; cin >> choice;
+    cout << "1: Register\n2: Login\n3: Change Password\n4: Delete user\n5: Exit\nYour choice: "; cin >> choice;
+
+    if (choice == 5) {
+        cout << "Goodbye" << endl;
+        return 0;
+    }
 
     if (choice == 1) {
         string username, password;

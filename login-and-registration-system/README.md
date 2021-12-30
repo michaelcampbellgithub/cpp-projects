@@ -10,7 +10,6 @@ g++ ./main.cpp -o main && ./main
 ```
 
 ## My changes (proposed):
-* Exit program option
 * Hash pwd in file
 * Write functional tests
 * Is an e2e test possible?
@@ -21,3 +20,4 @@ g++ ./main.cpp -o main && ./main
 * Removed call to `system("PAUSE")` as `PAUSE` is a Windows command & want this to be OS-agnostic
 * Delete user option
 * Change pwd option
+* Exit program option
