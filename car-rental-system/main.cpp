@@ -23,8 +23,7 @@ void newCarData();
 void delCar();
 void displayCar();
 void existingCust();
-void load();
-void load_CHECK();
+void load(int, string);
 void gotoxy(int , int );
 void time();
 void Boarder();
@@ -38,8 +37,6 @@ const string Date();
 void date();
 void dispAvailCar();
 void GotoXY(int , int );
-void load_EXIT();
-void load_UPDATE();
 void newUserPass();
 void password();
 void resetAvail();
@@ -187,14 +184,14 @@ void password() {
     for (int i = 0; i < countUser(); i++) {
         if (password.compare(userPass[i].passWord) == 0) {
          	system("cls");
-			load_CHECK();
+			load(rand() % 5 + 1, "LOG IN..."); // formerly load_CHECK
       		admin();
 		}
 	}
 
     if (password == "a") {
         system("cls");
-		load_CHECK();
+		load(rand() % 5 + 1, "LOG IN..."); // formerly load_CHECK
         admin();
     }
       		
@@ -218,73 +215,13 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-//// Load functions (could be combined into 1 with use of parameters for any differences)
+void load(int timer, string printStatement) {
+    Boarder();
 
-void load() {
-	Boarder();
-	
-	int timer = 5+ rand() % 20;
     int row, col, r, c, q;
 
     gotoxy(65, 34);
-    cout << "BOOTING UP...";
-    gotoxy(60, 36);
-
-    for (r = 1; r <= timer; r++) {
-        for (q = 0; q <= 100000000; q++); // to display the character slowly
-        printf("%c", 177);
-	}
-
-    Sleep(100);
-    system("cls");
-}
-
-void load_CHECK() {
-	Boarder();
-
-	int timer = rand() % 5 + 1;
-    int row, col, r, c, q;
-
-    gotoxy(65, 34);
-    printf("LOG IN...");
-    gotoxy(60, 36);
-
-    for (r = 1; r <= timer; r++) {
-        for (q = 0; q <= 100000000; q++); // to display the character slowly
-        printf("%c", 177);
-	}
-
-    Sleep(100);
-    system("cls");
-}
-
-void load_UPDATE() {
-	Boarder();
-	
-    int row, col, r, c, q;
-    int timer = rand() % 25 + 1;
-
-    gotoxy(65, 34);
-    printf("UPDATING DATABASE...");
-    gotoxy(60, 36);
-
-    for (r = 1; r <= timer; r++) {
-        for (q = 0; q <= 100000000; q++); // to display the character slowly
-        printf("%c", 177);
-	}
-
-    Sleep(100);
-    system("cls");
-}
-
-void load_EXIT() {
-	Boarder();
-	
-    int row, col, r, c, q;
-    int timer = rand() % 5 + 1;
-
-    gotoxy(65, 34);
-    printf("LOGGING OFF...");
+    printf("%s", printStatement);
     gotoxy(60, 36);
 
     for (r = 1; r <= timer; r++) {
@@ -1037,7 +974,7 @@ void admin() {
 	system("cls");
 	
 	if (x == 6) {
-		load_EXIT();
+		load(rand() % 5 + 1, "LOGGING OFF..."); // formerly load_EXIT
 		menu();
 	}
 	
@@ -1083,7 +1020,7 @@ void user() {
 	
 	else if (x == 2) {
 		system("cls");
-		load_UPDATE();
+		load(rand() % 25 + 1, "UPDATING DATABASE..."); // formerly load_UPDATE
 		existingCust();
 	}
 	
@@ -1214,7 +1151,7 @@ void tNc() {
 main() {
 	fullscreen();
 	welcome();
-	load();
+	load(5 + rand() % 20, "BOOTING UP...");
 	Boarder();
 	readUserPass();
 	availCar();
